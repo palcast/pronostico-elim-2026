@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiniela Mundial 2026 – Fase Eliminatoria</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root {
+    --verde:    #00A86B;
+    --verde-dark: #007A4D;
+    --rojo:     #D62828;
+    --fondo:    #0D1117;
+    --card:     #161B22;
+    --borde:    #30363D;
+    --texto:    #E6EDF3;
+    --muted:    #8B949E;
+    --amarillo: #F0B429;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #0D1117 0%, #161B22 50%, #0D1117 100%);
+    border-bottom: 1px solid var(--borde);
+    padding: 28px 24px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% -10%, rgba(0,168,107,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .trophy { font-size: 48px; display: block; margin-bottom: 8px; }
+  header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 7vw, 54px);
+    letter-spacing: 3px;
+    color: #fff;
+    line-height: 1;
+  }
+  header h1 span { color: var(--verde); }
+  header p.subtitle {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 6px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN CONTAINER ── */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 28px 16px 60px;
+  }
+
+  /* ── PUNTUACIÓN INFO ── */
+  .scoring-box {
+    background: var(--card);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+  }
+  .scoring-box h3 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amarillo);
+    margin-bottom: 10px;
+  }
+  .scoring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+  }
+  .scoring-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .scoring-item .pts {
+    background: var(--verde-dark);
+    color: #fff;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* ── DATOS PARTICIPANTE ── */
+  .participant-section {
+    background: var(--card);
+    border: 1px solid var(--verde);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 32px;
+    box-shadow: 0 0 20px rgba(0,168,107,0.08);
+  }
+  .participant-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--verde);
+    margin-bottom: 14px;
+  }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 500px) { .field-row { grid-template-columns: 1fr; } }
+  label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+  input[type="text"], input[type="number"], select {
+    width: 100%;
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+    color: var(--texto);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    padding: 9px 12px;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+  input:focus, select:focus { border-color: var(--verde); }
+  input::placeholder { color: var(--muted); }
+
+  /* ── RONDAS ── */
+  .round-section { margin-bottom: 36px; }
+  .round-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--borde);
+  }
+  .round-badge {
+    background: var(--verde);
+    color: #fff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .round-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: #fff;
+  }
+  .round-pts {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.3;
+  }
+  .round-pts strong { color: var(--amarillo); }
+
+  /* ── MATCH CARD ── */
+  .match-card {
+    background: var(--card);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+  .match-card:hover { border-color: #444D56; }
+  .match-date {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .match-teams {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .team-name {
+    flex: 1;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--texto);
+  }
+  .team-name.right { text-align: right; }
+  .vs-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+
+  /* ── SCORE INPUT ── */
+  .score-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .score-input-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+  }
+  .score-input-group.right { flex-direction: row-reverse; }
+  .score-flag {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  input.score-num {
+    width: 52px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 6px 4px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .score-dash {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  /* ── TIE-BREAK (ganador en empate) ── */
+  .tiebreak {
+    display: none;
+    background: rgba(214,40,40,0.07);
+    border: 1px solid rgba(214,40,40,0.25);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 10px;
+  }
+  .tiebreak.visible { display: block; }
+  .tiebreak label {
+    color: var(--rojo);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+  }
+  .tiebreak select {
+    border-color: rgba(214,40,40,0.4);
+  }
+  .tiebreak select:focus { border-color: var(--rojo); }
+
+  /* ── SUBMIT ── */
+  .submit-section {
+    position: sticky;
+    bottom: 16px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .submit-warning {
+    background: rgba(240,180,41,0.1);
+    border: 1px solid rgba(240,180,41,0.3);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 12px;
+    color: var(--amarillo);
+    text-align: center;
+    max-width: 520px;
+    width: 100%;
+  }
+  button[type="submit"] {
+    width: 100%;
+    max-width: 520px;
+    background: var(--verde);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 3px;
+    padding: 16px 32px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 4px 18px rgba(0,168,107,0.35);
+  }
+  button[type="submit"]:hover { background: var(--verde-dark); }
+  button[type="submit"]:active { transform: scale(0.98); }
+  button[type="submit"]:disabled {
+    background: #333;
+    color: var(--muted);
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  /* ── ESTADO ENVÍO ── */
+  #status {
+    display: none;
+    max-width: 520px;
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+  }
+  #status.ok {
+    display: block;
+    background: rgba(0,168,107,0.15);
+    border: 1px solid var(--verde);
+    color: var(--verde);
+  }
+  #status.error {
+    display: block;
+    background: rgba(214,40,40,0.1);
+    border: 1px solid var(--rojo);
+    color: #ff6b6b;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 11px;
+    padding: 20px 16px;
+    letter-spacing: 1px;
+  }
+
+  /* ── REQUIRED STAR ── */
+  .req { color: var(--rojo); margin-left: 2px; }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="trophy">🏆</span>
+  <h1>QUINIELA <span>MUNDIAL</span> 2026</h1>
+  <p class="subtitle">Fase Eliminatoria · Ronda de 32 al Final · USA–México–Canadá</p>
+</header>
+
+<main>
+
+  <!-- SCORING INFO -->
+  <div class="scoring-box">
+    <h3>Sistema de puntuación</h3>
+    <div class="scoring-grid">
+      <div class="scoring-item"><span class="pts">5 pts</span> Marcador exacto (90'+TEx)</div>
+      <div class="scoring-item"><span class="pts">4 pts</span> Diferencia de goles + resultado correcto</div>
+      <div class="scoring-item"><span class="pts">3 pts</span> Solo resultado correcto (gana/empata)</div>
+      <div class="scoring-item"><span class="pts">+2 pts</span> Equipo ganador – Ronda de 32</div>
+      <div class="scoring-item"><span class="pts">+3 pts</span> Equipo ganador – Octavos de Final</div>
+      <div class="scoring-item"><span class="pts">+4 pts</span> Equipo ganador – Semifinal</div>
+      <div class="scoring-item"><span class="pts">+5 pts</span> Equipo ganador – Final</div>
+      <div class="scoring-item"><span class="pts">+3 pts</span> Equipo ganador – 3er Lugar</div>
+    </div>
+  </div>
+
+  <form id="quiniela-form">
+
+    <!-- PARTICIPANTE -->
+    <div class="participant-section">
+      <h2>TUS DATOS</h2>
+      <div class="field-row">
+        <div>
+          <label for="nombre">Nombre completo <span class="req">*</span></label>
+          <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+        </div>
+        <div>
+          <label for="alias">Alias / Apodo</label>
+          <input type="text" id="alias" name="alias" placeholder="Opcional">
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         RONDA DE 32
+    ═══════════════════════════════════════ -->
+    <div class="round-section">
+      <div class="round-header">
+        <span class="round-badge">R32</span>
+        <span class="round-title">RONDA DE 32</span>
+        <div class="round-pts">Marcador exacto <strong>5 pts</strong> · Ganador <strong>+2 pts</strong><br>Empate en 90'+TE → indica quién avanza en penales</div>
+      </div>
+
+      <!-- ── JUN 28 ── -->
+      <!-- M1: South Africa vs Canada -->
+      <div class="match-card">
+        <div class="match-date">Dom 28 Jun · Los Ángeles · 15:00 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🇿🇦 Sudáfrica</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Canadá 🇨🇦</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m1_a" min="0" max="99" placeholder="0" required data-match="r32_m1" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m1_b" min="0" max="99" placeholder="0" required data-match="r32_m1" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m1">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m1_pen">
+            <option value="">Selecciona…</option>
+            <option value="Sudáfrica">🇿🇦 Sudáfrica</option>
+            <option value="Canadá">🇨🇦 Canadá</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ── JUN 29 ── -->
+      <!-- M2: Brazil vs Japan -->
+      <div class="match-card">
+        <div class="match-date">Lun 29 Jun · Houston · 13:00 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🇧🇷 Brasil</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Japón 🇯🇵</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m2_a" min="0" max="99" placeholder="0" required data-match="r32_m2" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m2_b" min="0" max="99" placeholder="0" required data-match="r32_m2" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m2">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m2_pen">
+            <option value="">Selecciona…</option>
+            <option value="Brasil">🇧🇷 Brasil</option>
+            <option value="Japón">🇯🇵 Japón</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- M3: Germany vs Paraguay -->
+      <div class="match-card">
+        <div class="match-date">Lun 29 Jun · Boston · 16:30 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🇩🇪 Alemania</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Paraguay 🇵🇾</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m3_a" min="0" max="99" placeholder="0" required data-match="r32_m3" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m3_b" min="0" max="99" placeholder="0" required data-match="r32_m3" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m3">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m3_pen">
+            <option value="">Selecciona…</option>
+            <option value="Alemania">🇩🇪 Alemania</option>
+            <option value="Paraguay">🇵🇾 Paraguay</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- M4: Netherlands vs Morocco -->
+      <div class="match-card">
+        <div class="match-date">Lun 29 Jun · Monterrey · 21:00 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🇳🇱 Países Bajos</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Marruecos 🇲🇦</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m4_a" min="0" max="99" placeholder="0" required data-match="r32_m4" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m4_b" min="0" max="99" placeholder="0" required data-match="r32_m4" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m4">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m4_pen">
+            <option value="">Selecciona…</option>
+            <option value="Países Bajos">🇳🇱 Países Bajos</option>
+            <option value="Marruecos">🇲🇦 Marruecos</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ── JUN 30 ── -->
+      <!-- M5: Ivory Coast vs Norway -->
+      <div class="match-card">
+        <div class="match-date">Mar 30 Jun · Dallas · 13:00 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🇨🇮 Costa de Marfil</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Noruega 🇳🇴</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m5_a" min="0" max="99" placeholder="0" required data-match="r32_m5" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m5_b" min="0" max="99" placeholder="0" required data-match="r32_m5" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m5">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m5_pen">
+            <option value="">Selecciona…</option>
+            <option value="Costa de Marfil">🇨🇮 Costa de Marfil</option>
+            <option value="Noruega">🇳🇴 Noruega</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- M6: France vs Sweden -->
+      <div class="match-card">
+        <div class="match-date">Mar 30 Jun · Nueva York/NJ · 17:00 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🇫🇷 Francia</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Suecia 🇸🇪</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m6_a" min="0" max="99" placeholder="0" required data-match="r32_m6" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m6_b" min="0" max="99" placeholder="0" required data-match="r32_m6" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m6">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m6_pen">
+            <option value="">Selecciona…</option>
+            <option value="Francia">🇫🇷 Francia</option>
+            <option value="Suecia">🇸🇪 Suecia</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- M7: Mexico vs Ecuador -->
+      <div class="match-card">
+        <div class="match-date">Mar 30 Jun · Ciudad de México · 21:00 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🇲🇽 México</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Ecuador 🇪🇨</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m7_a" min="0" max="99" placeholder="0" required data-match="r32_m7" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m7_b" min="0" max="99" placeholder="0" required data-match="r32_m7" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m7">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m7_pen">
+            <option value="">Selecciona…</option>
+            <option value="México">🇲🇽 México</option>
+            <option value="Ecuador">🇪🇨 Ecuador</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ── JUL 1 ── -->
+      <!-- M8: England vs Congo DR -->
+      <div class="match-card">
+        <div class="match-date">Mié 1 Jul · Atlanta · 12:00 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Congo RD 🇨🇩</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m8_a" min="0" max="99" placeholder="0" required data-match="r32_m8" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m8_b" min="0" max="99" placeholder="0" required data-match="r32_m8" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m8">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m8_pen">
+            <option value="">Selecciona…</option>
+            <option value="Inglaterra">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</option>
+            <option value="Congo RD">🇨🇩 Congo RD</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- M9: Belgium vs Senegal -->
+      <div class="match-card">
+        <div class="match-date">Mié 1 Jul · Seattle · 16:00 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🇧🇪 Bélgica</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Senegal 🇸🇳</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m9_a" min="0" max="99" placeholder="0" required data-match="r32_m9" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m9_b" min="0" max="99" placeholder="0" required data-match="r32_m9" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m9">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m9_pen">
+            <option value="">Selecciona…</option>
+            <option value="Bélgica">🇧🇪 Bélgica</option>
+            <option value="Senegal">🇸🇳 Senegal</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- M10: USA vs Bosnia -->
+      <div class="match-card">
+        <div class="match-date">Mié 1 Jul · San Francisco · 20:00 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🇺🇸 Estados Unidos</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Bosnia-Herz. 🇧🇦</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m10_a" min="0" max="99" placeholder="0" required data-match="r32_m10" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m10_b" min="0" max="99" placeholder="0" required data-match="r32_m10" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m10">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m10_pen">
+            <option value="">Selecciona…</option>
+            <option value="Estados Unidos">🇺🇸 Estados Unidos</option>
+            <option value="Bosnia-Herz.">🇧🇦 Bosnia-Herz.</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ── JUL 2 ── -->
+      <!-- M11: Spain vs Austria -->
+      <div class="match-card">
+        <div class="match-date">Jue 2 Jul · Los Ángeles · 15:00 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🇪🇸 España</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Austria 🇦🇹</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m11_a" min="0" max="99" placeholder="0" required data-match="r32_m11" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m11_b" min="0" max="99" placeholder="0" required data-match="r32_m11" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m11">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m11_pen">
+            <option value="">Selecciona…</option>
+            <option value="España">🇪🇸 España</option>
+            <option value="Austria">🇦🇹 Austria</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- M12: Portugal vs Croatia -->
+      <div class="match-card">
+        <div class="match-date">Jue 2 Jul · Toronto · 19:00 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🇵🇹 Portugal</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Croacia 🇭🇷</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m12_a" min="0" max="99" placeholder="0" required data-match="r32_m12" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m12_b" min="0" max="99" placeholder="0" required data-match="r32_m12" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m12">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m12_pen">
+            <option value="">Selecciona…</option>
+            <option value="Portugal">🇵🇹 Portugal</option>
+            <option value="Croacia">🇭🇷 Croacia</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- M13: Switzerland vs Algeria -->
+      <div class="match-card">
+        <div class="match-date">Jue 2 Jul · Vancouver · 23:00 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🇨🇭 Suiza</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Argelia 🇩🇿</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m13_a" min="0" max="99" placeholder="0" required data-match="r32_m13" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m13_b" min="0" max="99" placeholder="0" required data-match="r32_m13" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m13">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m13_pen">
+            <option value="">Selecciona…</option>
+            <option value="Suiza">🇨🇭 Suiza</option>
+            <option value="Argelia">🇩🇿 Argelia</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ── JUL 3 ── -->
+      <!-- M14: Australia vs Egypt -->
+      <div class="match-card">
+        <div class="match-date">Vie 3 Jul · Dallas · 14:00 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🇦🇺 Australia</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Egipto 🇪🇬</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m14_a" min="0" max="99" placeholder="0" required data-match="r32_m14" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m14_b" min="0" max="99" placeholder="0" required data-match="r32_m14" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m14">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m14_pen">
+            <option value="">Selecciona…</option>
+            <option value="Australia">🇦🇺 Australia</option>
+            <option value="Egipto">🇪🇬 Egipto</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- M15: Argentina vs Cape Verde -->
+      <div class="match-card">
+        <div class="match-date">Vie 3 Jul · Miami · 18:00 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🇦🇷 Argentina</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Cabo Verde 🇨🇻</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m15_a" min="0" max="99" placeholder="0" required data-match="r32_m15" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m15_b" min="0" max="99" placeholder="0" required data-match="r32_m15" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m15">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m15_pen">
+            <option value="">Selecciona…</option>
+            <option value="Argentina">🇦🇷 Argentina</option>
+            <option value="Cabo Verde">🇨🇻 Cabo Verde</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- M16: Colombia vs Ghana -->
+      <div class="match-card">
+        <div class="match-date">Vie 3 Jul · Kansas City · 21:30 ET</div>
+        <div class="match-teams">
+          <span class="team-name">🇨🇴 Colombia</span>
+          <span class="vs-label">VS</span>
+          <span class="team-name right">Ghana 🇬🇭</span>
+        </div>
+        <div class="score-row">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r32_m16_a" min="0" max="99" placeholder="0" required data-match="r32_m16" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r32_m16_b" min="0" max="99" placeholder="0" required data-match="r32_m16" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r32_m16">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r32_m16_pen">
+            <option value="">Selecciona…</option>
+            <option value="Colombia">🇨🇴 Colombia</option>
+            <option value="Ghana">🇬🇭 Ghana</option>
+          </select>
+        </div>
+      </div>
+    </div><!-- /r32 -->
+
+    <!-- ═══════════════════════════════════════
+         OCTAVOS DE FINAL (R16)
+    ═══════════════════════════════════════ -->
+    <div class="round-section">
+      <div class="round-header">
+        <span class="round-badge">R16</span>
+        <span class="round-title">OCTAVOS DE FINAL</span>
+        <div class="round-pts">Elige quién avanza de la R32 · Bonus <strong>+3 pts</strong> si atinas al equipo</div>
+      </div>
+      <p style="color:var(--muted);font-size:12px;margin-bottom:14px;">Escribe el nombre del equipo que crees que avanzará en cada cruce. Los equipos de cada duelo se definen según el bracket oficial.</p>
+
+      <!-- Cruces R16 según bracket oficial -->
+      <!-- Cruce 1: Gan(M1:ZA/CAN) vs Gan(M4:NL/MAR) -->
+      <div class="match-card">
+        <div class="match-date">~Jul 5-6 · Octavos 1 · Gan(Sudáfrica/Canadá) vs Gan(Países Bajos/Marruecos)</div>
+        <div class="match-teams">
+          <input type="text" name="r16_m1_a" placeholder="Equipo local" required style="flex:1">
+          <span class="vs-label" style="margin:0 10px">VS</span>
+          <input type="text" name="r16_m1_b" placeholder="Equipo visitante" required style="flex:1">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r16_m1_ga" min="0" max="99" placeholder="0" required data-match="r16_m1" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r16_m1_gb" min="0" max="99" placeholder="0" required data-match="r16_m1" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r16_m1">
+          <label>⚠ EMPATE – ¿Quién avanza en penales? <span class="req">*</span></label>
+          <select name="r16_m1_pen"><option value="">Selecciona…</option><option>Local</option><option>Visitante</option></select>
+        </div>
+      </div>
+
+      <!-- Cruce 2: Gan(M2:BRA/JAP) vs Gan(M5:CdM/NOR) -->
+      <div class="match-card">
+        <div class="match-date">~Jul 5-6 · Octavos 2 · Gan(Brasil/Japón) vs Gan(Costa de Marfil/Noruega)</div>
+        <div class="match-teams">
+          <input type="text" name="r16_m2_a" placeholder="Equipo local" required style="flex:1">
+          <span class="vs-label" style="margin:0 10px">VS</span>
+          <input type="text" name="r16_m2_b" placeholder="Equipo visitante" required style="flex:1">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r16_m2_ga" min="0" max="99" placeholder="0" required data-match="r16_m2" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r16_m2_gb" min="0" max="99" placeholder="0" required data-match="r16_m2" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r16_m2">
+          <label>⚠ EMPATE – ¿Quién avanza en penales?</label>
+          <select name="r16_m2_pen"><option value="">Selecciona…</option><option>Local</option><option>Visitante</option></select>
+        </div>
+      </div>
+
+      <!-- Cruce 3: Gan(M3:GER/PAR) vs Gan(M6:FRA/SUE) -->
+      <div class="match-card">
+        <div class="match-date">~Jul 7-8 · Octavos 3 · Gan(Alemania/Paraguay) vs Gan(Francia/Suecia)</div>
+        <div class="match-teams">
+          <input type="text" name="r16_m3_a" placeholder="Equipo local" required style="flex:1">
+          <span class="vs-label" style="margin:0 10px">VS</span>
+          <input type="text" name="r16_m3_b" placeholder="Equipo visitante" required style="flex:1">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r16_m3_ga" min="0" max="99" placeholder="0" required data-match="r16_m3" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r16_m3_gb" min="0" max="99" placeholder="0" required data-match="r16_m3" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r16_m3">
+          <label>⚠ EMPATE – ¿Quién avanza en penales?</label>
+          <select name="r16_m3_pen"><option value="">Selecciona…</option><option>Local</option><option>Visitante</option></select>
+        </div>
+      </div>
+
+      <!-- Cruce 4: Gan(M7:MEX/ECU) vs Gan(M8:ENG/COD) -->
+      <div class="match-card">
+        <div class="match-date">~Jul 7-8 · Octavos 4 · Gan(México/Ecuador) vs Gan(Inglaterra/Congo RD)</div>
+        <div class="match-teams">
+          <input type="text" name="r16_m4_a" placeholder="Equipo local" required style="flex:1">
+          <span class="vs-label" style="margin:0 10px">VS</span>
+          <input type="text" name="r16_m4_b" placeholder="Equipo visitante" required style="flex:1">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r16_m4_ga" min="0" max="99" placeholder="0" required data-match="r16_m4" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r16_m4_gb" min="0" max="99" placeholder="0" required data-match="r16_m4" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r16_m4">
+          <label>⚠ EMPATE – ¿Quién avanza en penales?</label>
+          <select name="r16_m4_pen"><option value="">Selecciona…</option><option>Local</option><option>Visitante</option></select>
+        </div>
+      </div>
+
+      <!-- Cruce 5: Gan(M9:BEL/SEN) vs Gan(M10:USA/BOS) -->
+      <div class="match-card">
+        <div class="match-date">~Jul 5-6 · Octavos 5 · Gan(Bélgica/Senegal) vs Gan(EUA/Bosnia)</div>
+        <div class="match-teams">
+          <input type="text" name="r16_m5_a" placeholder="Equipo local" required style="flex:1">
+          <span class="vs-label" style="margin:0 10px">VS</span>
+          <input type="text" name="r16_m5_b" placeholder="Equipo visitante" required style="flex:1">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r16_m5_ga" min="0" max="99" placeholder="0" required data-match="r16_m5" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r16_m5_gb" min="0" max="99" placeholder="0" required data-match="r16_m5" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r16_m5">
+          <label>⚠ EMPATE – ¿Quién avanza en penales?</label>
+          <select name="r16_m5_pen"><option value="">Selecciona…</option><option>Local</option><option>Visitante</option></select>
+        </div>
+      </div>
+
+      <!-- Cruce 6: Gan(M11:ESP/AUS) vs Gan(M12:POR/CRO) -->
+      <div class="match-card">
+        <div class="match-date">~Jul 7-8 · Octavos 6 · Gan(España/Austria) vs Gan(Portugal/Croacia)</div>
+        <div class="match-teams">
+          <input type="text" name="r16_m6_a" placeholder="Equipo local" required style="flex:1">
+          <span class="vs-label" style="margin:0 10px">VS</span>
+          <input type="text" name="r16_m6_b" placeholder="Equipo visitante" required style="flex:1">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r16_m6_ga" min="0" max="99" placeholder="0" required data-match="r16_m6" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r16_m6_gb" min="0" max="99" placeholder="0" required data-match="r16_m6" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r16_m6">
+          <label>⚠ EMPATE – ¿Quién avanza en penales?</label>
+          <select name="r16_m6_pen"><option value="">Selecciona…</option><option>Local</option><option>Visitante</option></select>
+        </div>
+      </div>
+
+      <!-- Cruce 7: Gan(M13:SUI/ARG_tz) vs Gan(M16:COL/GHA) -->
+      <div class="match-card">
+        <div class="match-date">~Jul 5-6 · Octavos 7 · Gan(Suiza/Argelia) vs Gan(Colombia/Ghana)</div>
+        <div class="match-teams">
+          <input type="text" name="r16_m7_a" placeholder="Equipo local" required style="flex:1">
+          <span class="vs-label" style="margin:0 10px">VS</span>
+          <input type="text" name="r16_m7_b" placeholder="Equipo visitante" required style="flex:1">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r16_m7_ga" min="0" max="99" placeholder="0" required data-match="r16_m7" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r16_m7_gb" min="0" max="99" placeholder="0" required data-match="r16_m7" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r16_m7">
+          <label>⚠ EMPATE – ¿Quién avanza en penales?</label>
+          <select name="r16_m7_pen"><option value="">Selecciona…</option><option>Local</option><option>Visitante</option></select>
+        </div>
+      </div>
+
+      <!-- Cruce 8: Gan(M14:AUS/EGY) vs Gan(M15:ARG/CV) -->
+      <div class="match-card">
+        <div class="match-date">~Jul 5-6 · Octavos 8 · Gan(Australia/Egipto) vs Gan(Argentina/Cabo Verde)</div>
+        <div class="match-teams">
+          <input type="text" name="r16_m8_a" placeholder="Equipo local" required style="flex:1">
+          <span class="vs-label" style="margin:0 10px">VS</span>
+          <input type="text" name="r16_m8_b" placeholder="Equipo visitante" required style="flex:1">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="r16_m8_ga" min="0" max="99" placeholder="0" required data-match="r16_m8" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="r16_m8_gb" min="0" max="99" placeholder="0" required data-match="r16_m8" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_r16_m8">
+          <label>⚠ EMPATE – ¿Quién avanza en penales?</label>
+          <select name="r16_m8_pen"><option value="">Selecciona…</option><option>Local</option><option>Visitante</option></select>
+        </div>
+      </div>
+    </div><!-- /r16 -->
+
+    <!-- ═══════════════════════════════════════
+         CUARTOS DE FINAL
+    ═══════════════════════════════════════ -->
+    <div class="round-section">
+      <div class="round-header">
+        <span class="round-badge">QF</span>
+        <span class="round-title">CUARTOS DE FINAL</span>
+        <div class="round-pts">Bonus <strong>+3 pts</strong> si atinas al equipo ganador</div>
+      </div>
+      <p style="color:var(--muted);font-size:12px;margin-bottom:14px;">Escribe los equipos que crees que estarán en cada cuarto. Pronóstico al marcador exacto aplica igual.</p>
+
+      <!-- QF1 -->
+      <div class="match-card">
+        <div class="match-date">~Jul 11-12 · Cuarto 1 · Gan(Oct1) vs Gan(Oct2)</div>
+        <div class="match-teams">
+          <input type="text" name="qf_m1_a" placeholder="Equipo" required style="flex:1">
+          <span class="vs-label" style="margin:0 10px">VS</span>
+          <input type="text" name="qf_m1_b" placeholder="Equipo" required style="flex:1">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="qf_m1_ga" min="0" max="99" placeholder="0" required data-match="qf_m1" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="qf_m1_gb" min="0" max="99" placeholder="0" required data-match="qf_m1" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_qf_m1">
+          <label>⚠ EMPATE – ¿Quién avanza en penales?</label>
+          <select name="qf_m1_pen"><option value="">Selecciona…</option><option>Local</option><option>Visitante</option></select>
+        </div>
+      </div>
+
+      <!-- QF2 -->
+      <div class="match-card">
+        <div class="match-date">~Jul 11-12 · Cuarto 2 · Gan(Oct3) vs Gan(Oct4)</div>
+        <div class="match-teams">
+          <input type="text" name="qf_m2_a" placeholder="Equipo" required style="flex:1">
+          <span class="vs-label" style="margin:0 10px">VS</span>
+          <input type="text" name="qf_m2_b" placeholder="Equipo" required style="flex:1">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="qf_m2_ga" min="0" max="99" placeholder="0" required data-match="qf_m2" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="qf_m2_gb" min="0" max="99" placeholder="0" required data-match="qf_m2" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_qf_m2">
+          <label>⚠ EMPATE – ¿Quién avanza en penales?</label>
+          <select name="qf_m2_pen"><option value="">Selecciona…</option><option>Local</option><option>Visitante</option></select>
+        </div>
+      </div>
+
+      <!-- QF3 -->
+      <div class="match-card">
+        <div class="match-date">~Jul 11-12 · Cuarto 3 · Gan(Oct5) vs Gan(Oct6)</div>
+        <div class="match-teams">
+          <input type="text" name="qf_m3_a" placeholder="Equipo" required style="flex:1">
+          <span class="vs-label" style="margin:0 10px">VS</span>
+          <input type="text" name="qf_m3_b" placeholder="Equipo" required style="flex:1">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="qf_m3_ga" min="0" max="99" placeholder="0" required data-match="qf_m3" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="qf_m3_gb" min="0" max="99" placeholder="0" required data-match="qf_m3" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_qf_m3">
+          <label>⚠ EMPATE – ¿Quién avanza en penales?</label>
+          <select name="qf_m3_pen"><option value="">Selecciona…</option><option>Local</option><option>Visitante</option></select>
+        </div>
+      </div>
+
+      <!-- QF4 -->
+      <div class="match-card">
+        <div class="match-date">~Jul 11-12 · Cuarto 4 · Gan(Oct7) vs Gan(Oct8)</div>
+        <div class="match-teams">
+          <input type="text" name="qf_m4_a" placeholder="Equipo" required style="flex:1">
+          <span class="vs-label" style="margin:0 10px">VS</span>
+          <input type="text" name="qf_m4_b" placeholder="Equipo" required style="flex:1">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="qf_m4_ga" min="0" max="99" placeholder="0" required data-match="qf_m4" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="qf_m4_gb" min="0" max="99" placeholder="0" required data-match="qf_m4" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_qf_m4">
+          <label>⚠ EMPATE – ¿Quién avanza en penales?</label>
+          <select name="qf_m4_pen"><option value="">Selecciona…</option><option>Local</option><option>Visitante</option></select>
+        </div>
+      </div>
+    </div><!-- /qf -->
+
+    <!-- ═══════════════════════════════════════
+         SEMIFINALES
+    ═══════════════════════════════════════ -->
+    <div class="round-section">
+      <div class="round-header">
+        <span class="round-badge">SF</span>
+        <span class="round-title">SEMIFINALES</span>
+        <div class="round-pts">Bonus <strong>+4 pts</strong> si atinas al equipo finalista</div>
+      </div>
+
+      <!-- SF1 -->
+      <div class="match-card">
+        <div class="match-date">~Jul 15 · Semifinal 1 · Gan(CF1) vs Gan(CF2)</div>
+        <div class="match-teams">
+          <input type="text" name="sf_m1_a" placeholder="Semifinalista" required style="flex:1">
+          <span class="vs-label" style="margin:0 10px">VS</span>
+          <input type="text" name="sf_m1_b" placeholder="Semifinalista" required style="flex:1">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="sf_m1_ga" min="0" max="99" placeholder="0" required data-match="sf_m1" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="sf_m1_gb" min="0" max="99" placeholder="0" required data-match="sf_m1" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_sf_m1">
+          <label>⚠ EMPATE – ¿Quién pasa a la Final?</label>
+          <select name="sf_m1_pen"><option value="">Selecciona…</option><option>Local</option><option>Visitante</option></select>
+        </div>
+      </div>
+
+      <!-- SF2 -->
+      <div class="match-card">
+        <div class="match-date">~Jul 16 · Semifinal 2 · Gan(CF3) vs Gan(CF4)</div>
+        <div class="match-teams">
+          <input type="text" name="sf_m2_a" placeholder="Semifinalista" required style="flex:1">
+          <span class="vs-label" style="margin:0 10px">VS</span>
+          <input type="text" name="sf_m2_b" placeholder="Semifinalista" required style="flex:1">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="sf_m2_ga" min="0" max="99" placeholder="0" required data-match="sf_m2" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="sf_m2_gb" min="0" max="99" placeholder="0" required data-match="sf_m2" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_sf_m2">
+          <label>⚠ EMPATE – ¿Quién pasa a la Final?</label>
+          <select name="sf_m2_pen"><option value="">Selecciona…</option><option>Local</option><option>Visitante</option></select>
+        </div>
+      </div>
+    </div><!-- /sf -->
+
+    <!-- ═══════════════════════════════════════
+         TERCER LUGAR
+    ═══════════════════════════════════════ -->
+    <div class="round-section">
+      <div class="round-header">
+        <span class="round-badge">3°</span>
+        <span class="round-title">TERCER LUGAR</span>
+        <div class="round-pts">Bonus <strong>+3 pts</strong> si atinas al ganador del bronce</div>
+      </div>
+      <div class="match-card">
+        <div class="match-date">~Jul 18 · Partido por el Bronce · Los perdedores de SF1 y SF2</div>
+        <div class="match-teams">
+          <input type="text" name="tp_m1_a" placeholder="Equipo" required style="flex:1">
+          <span class="vs-label" style="margin:0 10px">VS</span>
+          <input type="text" name="tp_m1_b" placeholder="Equipo" required style="flex:1">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="tp_m1_ga" min="0" max="99" placeholder="0" required data-match="tp_m1" data-side="a">
+          </div>
+          <span class="score-dash">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="tp_m1_gb" min="0" max="99" placeholder="0" required data-match="tp_m1" data-side="b">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_tp_m1">
+          <label>⚠ EMPATE – ¿Quién se queda con el bronce en penales?</label>
+          <select name="tp_m1_pen"><option value="">Selecciona…</option><option>Local</option><option>Visitante</option></select>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         LA GRAN FINAL
+    ═══════════════════════════════════════ -->
+    <div class="round-section">
+      <div class="round-header">
+        <span class="round-badge" style="background:var(--amarillo);color:#000">🏆</span>
+        <span class="round-title" style="color:var(--amarillo)">LA GRAN FINAL</span>
+        <div class="round-pts">Bonus <strong style="color:var(--amarillo)">+5 pts</strong> si atinas al Campeón del Mundo</div>
+      </div>
+      <div class="match-card" style="border-color: rgba(240,180,41,0.35); box-shadow: 0 0 24px rgba(240,180,41,0.08);">
+        <div class="match-date">19 Jul · MetLife Stadium, Nueva York/NJ · Campeón del Mundo 🏆</div>
+        <div class="match-teams">
+          <input type="text" name="final_a" placeholder="Finalista A" required style="flex:1; border-color:rgba(240,180,41,0.4)">
+          <span class="vs-label" style="margin:0 10px; color:var(--amarillo)">VS</span>
+          <input type="text" name="final_b" placeholder="Finalista B" required style="flex:1; border-color:rgba(240,180,41,0.4)">
+        </div>
+        <div class="score-row" style="margin-top:10px">
+          <div class="score-input-group">
+            <input class="score-num" type="number" name="final_ga" min="0" max="99" placeholder="0" required data-match="final" data-side="a" style="border-color:rgba(240,180,41,0.5)">
+          </div>
+          <span class="score-dash" style="color:var(--amarillo)">–</span>
+          <div class="score-input-group right">
+            <input class="score-num" type="number" name="final_gb" min="0" max="99" placeholder="0" required data-match="final" data-side="b" style="border-color:rgba(240,180,41,0.5)">
+          </div>
+        </div>
+        <div class="tiebreak" id="tb_final">
+          <label>⚠ EMPATE – ¿Quién es CAMPEÓN en penales? <span class="req">*</span></label>
+          <select name="final_pen">
+            <option value="">Selecciona al Campeón del Mundo…</option>
+            <option>Finalista A</option>
+            <option>Finalista B</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-section">
+      <div class="submit-warning">
+        ⚠ Una vez enviados, tus pronósticos son definitivos. No podrás modificarlos después.
+      </div>
+      <button type="submit" id="submit-btn">ENVIAR MIS PRONÓSTICOS</button>
+      <div id="status"></div>
+    </div>
+
+  </form>
+</main>
+
+<footer>Mundial 2026 · USA · México · Canadá · 11 Jun – 19 Jul 2026</footer>
+
+<script>
+// ── TIEBREAK LOGIC ──
+// Detecta empate (score_a === score_b) y muestra el selector de penales
+document.addEventListener('input', function(e) {
+  const input = e.target;
+  if (!input.dataset.match) return;
+
+  const matchId = input.dataset.match;
+  const scoreA = document.querySelector(`[data-match="${matchId}"][data-side="a"]`);
+  const scoreB = document.querySelector(`[data-match="${matchId}"][data-side="b"]`);
+  const tb = document.getElementById('tb_' + matchId);
+
+  if (!scoreA || !scoreB || !tb) return;
+
+  const a = parseInt(scoreA.value, 10);
+  const b = parseInt(scoreB.value, 10);
+
+  if (!isNaN(a) && !isNaN(b) && scoreA.value !== '' && scoreB.value !== '') {
+    if (a === b) {
+      tb.classList.add('visible');
+      tb.querySelector('select').required = true;
+    } else {
+      tb.classList.remove('visible');
+      tb.querySelector('select').required = false;
+      tb.querySelector('select').value = '';
+    }
+  } else {
+    tb.classList.remove('visible');
+    tb.querySelector('select').required = false;
+  }
+});
+
+// ── FORM SUBMIT → GOOGLE APPS SCRIPT ──
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby2wBezXkTFuQqeqUnlQZyOPHSG5XNRSeiwMxoziirRIiJrK2xYEza5CwzzeTffv3Nd2w/exec'; // ← Reemplazar con tu URL
+
+document.getElementById('quiniela-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('status');
+  btn.disabled = true;
+  btn.textContent = 'ENVIANDO…';
+  status.className = '';
+  status.style.display = 'none';
+
+  const data = Object.fromEntries(new FormData(this));
+  data.timestamp = new Date().toISOString();
+
+  try {
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+      mode: 'no-cors'
+    });
+
+    // no-cors no retorna body; si no lanza error, asumimos éxito
+    status.className = 'ok';
+    status.textContent = '✅ ¡Pronósticos enviados con éxito! Buena suerte ' + (data.nombre || '') + ' 🏆';
+    status.style.display = 'block';
+    btn.textContent = '✅ ENVIADO';
+    this.querySelectorAll('input, select, button').forEach(el => el.disabled = true);
+
+    // Scroll to top to show confirmation
+    status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  } catch (err) {
+    status.className = 'error';
+    status.textContent = '❌ Error al enviar. Verifica tu conexión e intenta de nuevo.';
+    status.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'REINTENTAR ENVÍO';
+  }
+});
+</script>
+</body>
+</html>
