@@ -316,7 +316,7 @@
     gap: 4px;
   }
   input.score-num-sm {
-    width: 44px;
+    width: 64px;
     text-align: center;
     font-size: 20px;
     font-weight: 700;
@@ -328,6 +328,14 @@
     font-family: 'Inter', sans-serif;
     outline: none;
     transition: border-color 0.2s;
+    /* Show native spinners on all devices */
+    -moz-appearance: number-input;
+  }
+  input.score-num-sm::-webkit-inner-spin-button,
+  input.score-num-sm::-webkit-outer-spin-button {
+    opacity: 1;
+    height: 32px;
+    cursor: pointer;
   }
   input.score-num-sm:focus { border-color: var(--verde); }
   .score-dash-sm {
@@ -951,7 +959,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_r16_m1_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m1_a">Gan(M1 RSA/CAN)</span>
+            <span class="team-txt muted" id="lbl_r16_m1_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -962,7 +970,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_r16_m1_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m1_b">Gan(M4 NED/MAR)</span>
+            <span class="team-txt muted" id="lbl_r16_m1_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_r16_m1">
@@ -979,7 +987,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_r16_m2_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m2_a">Gan(M2 BRA/JPN)</span>
+            <span class="team-txt muted" id="lbl_r16_m2_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -990,7 +998,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_r16_m2_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m2_b">Gan(M5 CIV/NOR)</span>
+            <span class="team-txt muted" id="lbl_r16_m2_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_r16_m2">
@@ -1007,7 +1015,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_r16_m3_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m3_a">Gan(M3 GER/PAR)</span>
+            <span class="team-txt muted" id="lbl_r16_m3_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -1018,7 +1026,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_r16_m3_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m3_b">Gan(M6 FRA/SWE)</span>
+            <span class="team-txt muted" id="lbl_r16_m3_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_r16_m3">
@@ -1035,7 +1043,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_r16_m4_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m4_a">Gan(M7 MEX/ECU)</span>
+            <span class="team-txt muted" id="lbl_r16_m4_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -1046,7 +1054,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_r16_m4_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m4_b">Gan(M8 ENG/COD)</span>
+            <span class="team-txt muted" id="lbl_r16_m4_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_r16_m4">
@@ -1063,7 +1071,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_r16_m5_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m5_a">Gan(M10 USA/BIH)</span>
+            <span class="team-txt muted" id="lbl_r16_m5_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -1074,7 +1082,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_r16_m5_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m5_b">Gan(M9 BEL/SEN)</span>
+            <span class="team-txt muted" id="lbl_r16_m5_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_r16_m5">
@@ -1091,7 +1099,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_r16_m6_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m6_a">Gan(M12 POR/CRO)</span>
+            <span class="team-txt muted" id="lbl_r16_m6_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -1102,7 +1110,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_r16_m6_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m6_b">Gan(M11 ESP/AUT)</span>
+            <span class="team-txt muted" id="lbl_r16_m6_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_r16_m6">
@@ -1119,7 +1127,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_r16_m7_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m7_a">Gan(M13 SUI/ALG)</span>
+            <span class="team-txt muted" id="lbl_r16_m7_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -1130,7 +1138,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_r16_m7_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m7_b">Gan(M16 COL/GHA)</span>
+            <span class="team-txt muted" id="lbl_r16_m7_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_r16_m7">
@@ -1147,7 +1155,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_r16_m8_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m8_a">Gan(M15 ARG/CPV)</span>
+            <span class="team-txt muted" id="lbl_r16_m8_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -1158,7 +1166,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_r16_m8_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_r16_m8_b">Gan(M14 AUS/EGY)</span>
+            <span class="team-txt muted" id="lbl_r16_m8_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_r16_m8">
@@ -1188,7 +1196,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_qf_m1_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_qf_m1_a">Gan(Oct 3: GER/PAR vs FRA/SWE)</span>
+            <span class="team-txt muted" id="lbl_qf_m1_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -1199,7 +1207,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_qf_m1_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_qf_m1_b">Gan(Oct 1: RSA/CAN vs NED/MAR)</span>
+            <span class="team-txt muted" id="lbl_qf_m1_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_qf_m1">
@@ -1216,7 +1224,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_qf_m2_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_qf_m2_a">Gan(Oct 6: POR/CRO vs ESP/AUT)</span>
+            <span class="team-txt muted" id="lbl_qf_m2_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -1227,7 +1235,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_qf_m2_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_qf_m2_b">Gan(Oct 5: USA/BIH vs BEL/SEN)</span>
+            <span class="team-txt muted" id="lbl_qf_m2_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_qf_m2">
@@ -1244,7 +1252,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_qf_m3_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_qf_m3_a">Gan(Oct 2: BRA/JPN vs CIV/NOR)</span>
+            <span class="team-txt muted" id="lbl_qf_m3_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -1255,7 +1263,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_qf_m3_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_qf_m3_b">Gan(Oct 4: MEX/ECU vs ENG/COD)</span>
+            <span class="team-txt muted" id="lbl_qf_m3_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_qf_m3">
@@ -1272,7 +1280,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_qf_m4_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_qf_m4_a">Gan(Oct 8: ARG/CPV vs AUS/EGY)</span>
+            <span class="team-txt muted" id="lbl_qf_m4_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -1283,7 +1291,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_qf_m4_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_qf_m4_b">Gan(Oct 7: SUI/ALG vs COL/GHA)</span>
+            <span class="team-txt muted" id="lbl_qf_m4_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_qf_m4">
@@ -1311,7 +1319,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_sf_m1_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_sf_m1_a">Gan(QF1)</span>
+            <span class="team-txt muted" id="lbl_sf_m1_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -1322,7 +1330,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_sf_m1_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_sf_m1_b">Gan(QF3)</span>
+            <span class="team-txt muted" id="lbl_sf_m1_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_sf_m1">
@@ -1339,7 +1347,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_sf_m2_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_sf_m2_a">Gan(QF2)</span>
+            <span class="team-txt muted" id="lbl_sf_m2_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -1350,7 +1358,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_sf_m2_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_sf_m2_b">Gan(QF4)</span>
+            <span class="team-txt muted" id="lbl_sf_m2_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_sf_m2">
@@ -1376,7 +1384,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_tp_m1_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_tp_m1_a">Per(SF1)</span>
+            <span class="team-txt muted" id="lbl_tp_m1_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -1387,7 +1395,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_tp_m1_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_tp_m1_b">Per(SF2)</span>
+            <span class="team-txt muted" id="lbl_tp_m1_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_tp_m1">
@@ -1413,7 +1421,7 @@
         <div class="match-body">
           <div class="match-side">
             <img class="flag-sm" id="flag_final_a" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_final_a">Gan(SF1)</span>
+            <span class="team-txt muted" id="lbl_final_a"></span>
           </div>
           <div class="match-center">
             <div class="score-inline">
@@ -1424,7 +1432,7 @@
           </div>
           <div class="match-side right">
             <img class="flag-sm" id="flag_final_b" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="">
-            <span class="team-txt muted" id="lbl_final_b">Gan(SF2)</span>
+            <span class="team-txt muted" id="lbl_final_b"></span>
           </div>
         </div>
         <div class="tiebreak" id="tb_final">
